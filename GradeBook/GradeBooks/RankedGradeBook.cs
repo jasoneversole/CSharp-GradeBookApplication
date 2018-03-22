@@ -23,27 +23,21 @@ namespace GradeBook.GradeBooks
             int rankCount = Convert.ToInt32(Students.Count * 0.20f);
             List<Student> sortedStudents = Students.OrderByDescending(x => x.AverageGrade).ToList();            
             
-            for (int i = 1; i < (sortedStudents.Count + 1); i++)
+            if (sortedStudents[rankCount-1].AverageGrade <= averageGrade)
             {
-                if (sortedStudents[i - 1].AverageGrade == averageGrade)
-                {
-                    if(i <= rankCount)
-                    {
-                        return 'A';
-                    }
-                    else if(i <= rankCount*2)
-                    {
-                        return 'B';
-                    }
-                    else if (i <= rankCount * 3)
-                    {
-                        return 'C';
-                    }
-                    else if (i <= rankCount * 4)
-                    {
-                        return 'D';
-                    }
-                }
+                return 'A';
+            }
+            else if(sortedStudents[(rankCount * 2) - 1].AverageGrade <= averageGrade)
+            {
+                return 'B';
+            }
+            else if (sortedStudents[(rankCount * 3) - 1].AverageGrade <= averageGrade)
+            {
+                return 'C';
+            }
+            else if (sortedStudents[(rankCount * 4) - 1].AverageGrade <= averageGrade)
+            {
+                return 'D';
             }
 
             return 'F';
